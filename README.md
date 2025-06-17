@@ -79,37 +79,6 @@ service.sendNotification(push);
 ## Reflexión
 Aplicar OCP permite crear sistemas modulares, escalables y seguros ante cambios. En lugar de alterar el comportamiento interno de una clase para cubrir nuevos casos, se crean nuevas clases que extienden la funcionalidad, manteniendo la estabilidad del sistema original.
 
-# ISP - Interface Segregation Principle
-
-## Descripción
-
-En este ejercicio se aplicó el **Principio de Segregación de Interfaces (ISP)**. Se partió de una interfaz `Device` que forzaba a todas las clases que la implementaban a definir métodos no aplicables (por ejemplo, `charge()` en dispositivos no recargables).
-
-## Refactorización
-
-Se dividió la interfaz original en dos:
-- `Device`: métodos comunes (`turnOn()`, `turnOff()`)
-- `Rechargeable`: solo con el método `charge()`
-
-De este modo, solo las clases que realmente lo requieren implementan `Rechargeable`.
-
-## Problemas resueltos
-
-- **Evita métodos innecesarios:** Ahora, las clases como `DisposableCamera` ya no están obligadas a implementar métodos irrelevantes.
-- **Más mantenible:** Es más fácil agregar nuevos dispositivos que sean solo encendibles/apagables o recargables.
-- **Previene errores en tiempo de ejecución:** No hay más lanzamientos de `UnsupportedOperationException` por métodos que no deberían existir.
-
-## Ejecución
-
-Se probaron ambos dispositivos:
-- `Phone`: Se puede encender, apagar y cargar.
-- `DisposableCamera`: Solo se puede encender y apagar, no tiene método de carga.
-
-
-## Reflexión:
-Aplicar ISP nos obliga a pensar cuidadosamente en las responsabilidades reales de cada clase y a evitar inflar interfaces con métodos innecesarios. Así, el código se vuelve más limpio y robusto.
-
-
 # LSP - Liskov Substitution Principle
 ## Descripción
 Este ejercicio aplica el Principio de Sustitución de Liskov (LSP), que establece que las clases derivadas deben poder sustituir a sus clases base sin alterar el funcionamiento correcto del programa.
@@ -150,6 +119,35 @@ Fish fish = new Fish();
 ## Reflexión
 Aplicar LSP refuerza la coherencia semántica de las jerarquías de clases. Ayuda a evitar errores por mal diseño de herencia y asegura que cada clase hija cumpla correctamente el contrato de su clase padre o interfaz, sin romper el sistema.
 
+# ISP - Interface Segregation Principle
+
+## Descripción
+
+En este ejercicio se aplicó el **Principio de Segregación de Interfaces (ISP)**. Se partió de una interfaz `Device` que forzaba a todas las clases que la implementaban a definir métodos no aplicables (por ejemplo, `charge()` en dispositivos no recargables).
+
+## Refactorización
+
+Se dividió la interfaz original en dos:
+- `Device`: métodos comunes (`turnOn()`, `turnOff()`)
+- `Rechargeable`: solo con el método `charge()`
+
+De este modo, solo las clases que realmente lo requieren implementan `Rechargeable`.
+
+## Problemas resueltos
+
+- **Evita métodos innecesarios:** Ahora, las clases como `DisposableCamera` ya no están obligadas a implementar métodos irrelevantes.
+- **Más mantenible:** Es más fácil agregar nuevos dispositivos que sean solo encendibles/apagables o recargables.
+- **Previene errores en tiempo de ejecución:** No hay más lanzamientos de `UnsupportedOperationException` por métodos que no deberían existir.
+
+## Ejecución
+
+Se probaron ambos dispositivos:
+- `Phone`: Se puede encender, apagar y cargar.
+- `DisposableCamera`: Solo se puede encender y apagar, no tiene método de carga.
+
+
+## Reflexión:
+Aplicar ISP nos obliga a pensar cuidadosamente en las responsabilidades reales de cada clase y a evitar inflar interfaces con métodos innecesarios. Así, el código se vuelve más limpio y robusto.
 
 
 # DIP - Dependency Inversion Principle
